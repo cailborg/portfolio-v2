@@ -1,0 +1,216 @@
+.experiments {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+  padding: 40px 24px 160px;
+  padding-top: 15vh;
+  box-sizing: border-box;
+}
+
+.experiments__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.experiments__frame,
+.experiments__controls,
+.experiments__skeleton,
+.experiments__error,
+.experiments__intro {
+  position: relative;
+  z-index: 1;
+}
+
+.experiments__intro {
+  font-size: 13px;
+  font-weight: 300;
+  color: #6b7280;
+  text-align: center;
+  max-width: 360px;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+/* btn needs relative so shadow/edge are positioned against it */
+.experiments__btn {
+  position: relative;
+}
+
+/* ─── Image frame ─────────────────────────────────────────── */
+
+.experiments__frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 58vh;
+  width: 100%;
+}
+
+.experiments__img {
+  display: block;
+  max-height: 58vh;
+  max-width: min(90vw, 900px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.experiments__skeleton {
+  width: min(60vw, 600px);
+  height: 100%;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+  animation: experiments-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes experiments-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.7; }
+}
+
+/* ─── Controls (counter + button) — fixed to bottom ──────── */
+
+.experiments__controls {
+  position: absolute;
+  bottom: 44px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 1;
+}
+
+.experiments__counter {
+  font-family: 'Outfit', monospace;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: #b0b5bc;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+/* ─── Button (3D push — technique by joshwcomeau.com) ─────── */
+
+.experiments__btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  -webkit-tap-highlight-color: transparent;
+  transition: filter 250ms;
+  user-select: none;
+}
+
+.experiments__btn:hover {
+  filter: brightness(110%);
+}
+
+.experiments__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.experiments__btn-shadow {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  bottom: -4px;
+  border-radius: 8px;
+  background: hsl(0deg 0% 0% / 0.06);
+  filter: blur(2px);
+  transform: translateY(1px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  will-change: transform;
+}
+
+.experiments__btn-edge {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 8px;
+  background: linear-gradient(
+    to left,
+    hsl(0deg 0% 8%) 0%,
+    hsl(0deg 0% 18%) 8%,
+    hsl(0deg 0% 18%) 92%,
+    hsl(0deg 0% 8%) 100%
+  );
+}
+
+.experiments__btn-front {
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  background: #1a1a1a;
+  color: #f5f0e8;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 18px 52px;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  will-change: transform;
+}
+
+/* Hover — rise */
+.experiments__btn:hover .experiments__btn-front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+.experiments__btn:hover .experiments__btn-shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+/* Press — push down */
+.experiments__btn:active .experiments__btn-front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+.experiments__btn:active .experiments__btn-shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.experiments__btn:disabled .experiments__btn-front,
+.experiments__btn:disabled .experiments__btn-shadow {
+  transition: none;
+  transform: translateY(-4px);
+}
+
+/* ─── Error state ─────────────────────────────────────────── */
+
+.experiments__error {
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  text-align: center;
+  max-width: 340px;
+  line-height: 1.7;
+}
+
+.experiments__error code {
+  font-family: 'Outfit', monospace;
+  background: #e4e7eb;
+  color: #111111;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 12px;
+}

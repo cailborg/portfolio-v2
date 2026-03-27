@@ -1,0 +1,10 @@
+:root {
+  /* Orange pages (home, about, contact) */
+  --color-orange: #ffa719;   /* page background */
+  --color-cream: #fff6be;    /* nav pill, mobile menu bg */
+  --color-brown: #7b500d;    /* text/icons on orange or cream */
+
+  /* Dark pages (work) */
+  --color-dark: #0e0e0e;     /* page background */
+  --color-sand: #f5f0e8;     /* text/logo on dark bg */
+}

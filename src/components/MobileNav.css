@@ -1,0 +1,88 @@
+/* Hamburger trigger — hidden on desktop */
+.mobile-nav-trigger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-cream);
+  color: var(--color-brown);
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav-trigger {
+    display: flex;
+  }
+
+  /* Hide desktop nav on pages that use MobileNav */
+  .desktop-only-nav {
+    display: none;
+  }
+}
+
+/* Full-screen overlay */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-cream);
+  clip-path: circle(0% at calc(100% - 56px) 72px);
+  transition: clip-path 0.6s cubic-bezier(0.77, 0, 0.18, 1);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.mobile-nav-overlay.open {
+  clip-path: circle(200% at calc(100% - 56px) 72px);
+  pointer-events: all;
+}
+
+.mobile-nav-close {
+  position: absolute;
+  top: 48px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-cream);
+  color: var(--color-brown);
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease 0.3s;
+}
+
+.mobile-nav-overlay.open .mobile-nav-close {
+  opacity: 1;
+}
+
+.mobile-nav-items {
+  position: absolute;
+  top: 259px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--color-brown);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.25s ease 0.35s, transform 0.35s ease 0.35s;
+}
+
+.mobile-nav-overlay.open .mobile-nav-items {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-nav-items a {
+  cursor: pointer;
+  line-height: 0.957;
+}
