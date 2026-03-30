@@ -6,6 +6,9 @@ uniform vec2 resolution;
 uniform vec2 mouse; // pixel coords, (-9999,-9999) when inactive
 uniform float mouseRadius;
 uniform float mouseStrength;
+uniform vec2  rain;  // auto raindrop position, (-9999,-9999) when inactive
+uniform float rainRadius;
+uniform float rainStrength;
 uniform float velDamping;
 uniform float presDamping;
 
@@ -40,6 +43,13 @@ void main() {
     float dist = length(gl_FragCoord.xy - mouse);
     float influence = exp(-dist * dist / (mouseRadius * mouseRadius));
     pressure += influence * mouseStrength;
+  }
+
+  // Auto raindrop impulse — same math, independent of mouse
+  if (rain.x > -100.0) {
+    float dist = length(gl_FragCoord.xy - rain);
+    float influence = exp(-dist * dist / (rainRadius * rainRadius));
+    pressure += influence * rainStrength;
   }
 
   // Store gradients in ZW — used directly in display pass

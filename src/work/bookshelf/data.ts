@@ -13,7 +13,7 @@ export const projects: VinylProject[] = [
     description:
       'Led the expansion of Cochlear\'s design system — Sonic — from a web-only component library into a comprehensive multi-platform solution covering iOS, Android, and professional software. Consolidated over 250 styles down to 64 design tokens, establishing a single source of truth in Figma with a Figma-to-GitLab pipeline. Within six months, two major greenfield projects had adopted Sonic.',
     tags: ['Design Systems', 'Design Tokens', 'Multi-platform', 'Figma', 'Component Library'],
-    links: [{ label: 'View Case Study', url: 'https://cailborg.com/design-systems-at-cochlear' }],
+    links: [{ label: 'View Case Study', url: '/work/sonic' }],
     waveParams: {
       waveFrequency: 1, waveAmplitude: 0.85, waveSpeed: 0.5, waveLayers: 1,
       distortion: 0.86, noiseScale: 0.5,
@@ -53,7 +53,7 @@ export const projects: VinylProject[] = [
     description:
       'Brand, product, and service design for Limepay\'s retail TBYB offering — from competitor analysis and service blueprints through to high-fidelity prototypes. Built a distinctive visual identity with an energetic, contemporary aesthetic targeting younger consumers.',
     tags: ['Brand Identity', 'Product Design', 'UX Research', 'Prototyping', 'Retail'],
-    links: [{ label: 'View Case Study', url: 'https://cailborg.com/tbyb' }],
+    links: [{ label: 'View Case Study', url: '/work/tbyb' }],
     waveParams: {
       waveFrequency: 1, waveAmplitude: 0.85, waveSpeed: 0.5, waveLayers: 1,
       distortion: 0.86, noiseScale: 0.5,
@@ -73,7 +73,7 @@ export const projects: VinylProject[] = [
     description:
       'Repositioned design at OFX from a wireframing function to a strategic discipline. Established FOX V1 — a React component library and Figma system — reducing UI component work from 60–70% of designer time to near-zero, freeing teams for higher-level experience strategy.',
     tags: ['Design Ops', 'React', 'Component Library', 'Figma', 'Accessibility'],
-    links: [{ label: 'View Case Study', url: 'https://cailborg.com/ofx-design-system' }],
+    links: [{ label: 'View Case Study', url: '/work/fox' }],
     waveParams: {
       waveFrequency: 1, waveAmplitude: 0.85, waveSpeed: 0.5, waveLayers: 1,
       distortion: 0.86, noiseScale: 0.5,
@@ -93,7 +93,7 @@ export const projects: VinylProject[] = [
     description:
       'Foundational Rules of Experience Design — AGL\'s end-to-end design language system. A full audit of all consumer touchpoints, WCAG 2.0 AA colour palette, systematic spacing and typography, a comprehensive Sketch component library, custom illustrations, and a dedicated microsite to host and communicate the system.',
     tags: ['Design Language', 'WCAG', 'Component Library', 'Illustration', 'Documentation'],
-    links: [{ label: 'View Case Study', url: 'https://cailborg.com/agl-design-system' }],
+    links: [{ label: 'View Case Study', url: '/work/fred' }],
     waveParams: {
       waveFrequency: 1, waveAmplitude: 0.85, waveSpeed: 0.5, waveLayers: 1,
       distortion: 0.86, noiseScale: 0.5,
@@ -113,7 +113,7 @@ export const projects: VinylProject[] = [
     description:
       'An interactive branded tool matching NRL and AFL fans with their NBA equivalent during the playoffs — featuring custom jersey illustrations and a modular visual system handling thousands of team-combination variations. Generated $1,066,400 in direct betting revenue at a 16:1 ROI.',
     tags: ['Campaign', 'Illustration', 'Web Design', 'Animation', 'Interactive'],
-    links: [{ label: 'View Case Study', url: 'https://cailborg.com/crownbet-fanterpreter' }],
+    links: [{ label: 'View Case Study', url: '/work/fanterpreter' }],
     waveParams: {
       waveFrequency: 1, waveAmplitude: 0.85, waveSpeed: 0.5, waveLayers: 1,
       distortion: 0.86, noiseScale: 0.5,

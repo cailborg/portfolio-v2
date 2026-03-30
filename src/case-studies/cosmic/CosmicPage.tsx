@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import AppHeader from '../../components/AppHeader';
-import './cosmic-page.css';
+import '../case-study.css';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -57,95 +57,123 @@ export default function CosmicPage() {
 
   return (
     <div className="cs-page">
-      <AppHeader variant="light" />
 
-      {/* Hero */}
-      <div className="cs-hero">
-        <img
-          className="cs-hero__img"
-          src="/images/cosmic.png"
-          alt="Cosmic — Limepay Design System"
-        />
-        <div className="cs-hero__fade" />
-      </div>
+      {/* Cover — full viewport, image peeks from bottom */}
+      <div className="cs-cover">
+        <AppHeader variant="light" />
 
-      {/* Intro */}
-      <motion.div
-        className="cs-intro"
-        initial="hidden"
-        animate="visible"
-        variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-      >
-        <motion.div className="cs-intro__meta" variants={fadeUp}>
-          <p className="cs-eyebrow">2022</p>
-          <p className="cs-eyebrow">Limepay</p>
-          <ul className="cs-tags">
-            <li>Design Systems</li>
-            <li>UI Design</li>
-            <li>Experience Design</li>
-          </ul>
-          <a
-            className="cs-external-link"
-            href="https://cosmic.limepay.com.au"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Cosmic Design System ↗
-          </a>
-        </motion.div>
+        <motion.div
+          className="cs-cover__content"
+          initial="hidden"
+          animate="visible"
+          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+        >
+          <motion.h1 className="cs-cover__title" variants={fadeUp}>
+            Cosmic
+          </motion.h1>
 
-        <motion.div className="cs-intro__body" variants={fadeUp}>
-          <h1 className="cs-title">Cosmic</h1>
-          <div className="cs-body-copy">
-            <p>
-              Limepay is a Buy-Now-Pay-Later startup that was looking to scale its design team
-              and expand its suite of products.
-            </p>
-            <p>
-              As the UI Design Lead in the Innovation Team, my role was to create a design system
-              that was flexible enough to be themed for each of our hundreds of merchant brands
-              while uplifting the standard of accessibility and usability in our products. I also
-              needed to evangelise and educate stakeholders, including the engineering team, on the
-              benefits of using a design system. As a result I created Cosmic, the Limepay design
-              system, which has begun to roll out in production whenever we create new core product
-              features.
-            </p>
-            <p>
-              At the same time we used the principles, tokens and components of Cosmic to redesign
-              our brand website, and quickly iterate and test new products which will be in market
-              in 2022.
-            </p>
-            <p>
-              I also worked with a UX Designer to rethink our core checkout product to utilise our
-              freshly built Design System and to accommodate a complex set of user flows and
-              flexible payment options.
-            </p>
-            <p>
-              You can view V1 of Cosmic{' '}
-              <a href="https://cosmic.limepay.com.au" target="_blank" rel="noopener noreferrer">
-                here
+          <motion.div className="cs-cover__meta" variants={fadeUp}>
+            <div className="cs-meta-col">
+              <p className="cs-meta-col__label">Year</p>
+              <p className="cs-meta-col__value">2022</p>
+            </div>
+            <div className="cs-meta-col">
+              <p className="cs-meta-col__label">Client</p>
+              <p className="cs-meta-col__value">Limepay</p>
+            </div>
+            <div className="cs-meta-col">
+              <p className="cs-meta-col__label">Involvement</p>
+              <ul className="cs-meta-tags">
+                <li>Design Systems</li>
+                <li>Tokenisation</li>
+                <li>Accessibility</li>
+                <li>UI Design</li>
+              </ul>
+            </div>
+            <div className="cs-meta-col">
+              <p className="cs-meta-col__label">Overview</p>
+              <p className="cs-meta-col__value cs-meta-col__value--body">
+                A flexible design system enabling hundreds of merchant brands to theme the Limepay
+                checkout without breaking accessibility standards.
+              </p>
+              <a
+                className="cs-meta-link"
+                href="https://cosmic.limepay.com.au"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit site ↗
               </a>
-              .
-            </p>
-          </div>
+            </div>
+          </motion.div>
         </motion.div>
-      </motion.div>
+
+      </div>
 
       {/* Gallery */}
       <div className="cs-gallery">
 
-        {/* Full bleed: iPhone mockup */}
+        {/* Peek image — constrained to header margins, pulls up into viewport */}
         <motion.figure
-          className="cs-gallery__item--full"
+          className="cs-gallery__item--peek"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
+          animate="visible"
           variants={fadeUp}
         >
           <img src={images[0].src} alt={images[0].alt} />
         </motion.figure>
 
-        {/* Contained: Testimonial 1 — Sharon Tam */}
+        {/* Body copy */}
+        <motion.div
+          className="cs-content cs-body"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        >
+          <motion.div className="cs-body__copy" variants={fadeUp}>
+            <p>
+              Limepay needed to scale product development across hundreds of merchants — without
+              breaking consistency, accessibility, or speed.
+            </p>
+            <p>
+              I led the creation of "Cosmic", a design system that enabled rapid product iteration
+              while maintaining a unified experience across all merchant implementations.
+            </p>
+          </motion.div>
+
+          <motion.div className="cs-impact" variants={fadeUp}>
+            <h2 className="cs-impact__heading">Impact</h2>
+            <ul className="cs-impact__list">
+              <li>Reduced design-to-dev handoff time by X%</li>
+              <li>Enabled reuse across X+ merchants</li>
+              <li>Improved accessibility compliance across core flows</li>
+              <li>Increased speed of launching new product features</li>
+            </ul>
+          </motion.div>
+        </motion.div>
+
+        {/* 2-up: Discovery + Illustrations */}
+        <div className="cs-content">
+          <motion.div
+            className="cs-gallery__row"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
+          >
+            <motion.figure variants={fadeUp}>
+              <img src={images[1].src} alt={images[1].alt} />
+              {images[1].caption && <figcaption>{images[1].caption}</figcaption>}
+            </motion.figure>
+            <motion.figure variants={fadeUp}>
+              <img src={images[2].src} alt={images[2].alt} />
+              {images[2].caption && <figcaption>{images[2].caption}</figcaption>}
+            </motion.figure>
+          </motion.div>
+        </div>
+
+        {/* Testimonial 1 — Sharon Tam */}
         <div className="cs-content">
           <motion.blockquote
             className="cs-quote"
@@ -164,26 +192,6 @@ export default function CosmicPage() {
             </p>
             <cite className="cs-quote__attribution">Sharon Tam — UX Designer</cite>
           </motion.blockquote>
-        </div>
-
-        {/* Contained 2-up: Discovery + Illustrations */}
-        <div className="cs-content">
-          <motion.div
-            className="cs-gallery__row"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
-          >
-            <motion.figure variants={fadeUp}>
-              <img src={images[1].src} alt={images[1].alt} />
-              {images[1].caption && <figcaption>{images[1].caption}</figcaption>}
-            </motion.figure>
-            <motion.figure variants={fadeUp}>
-              <img src={images[2].src} alt={images[2].alt} />
-              {images[2].caption && <figcaption>{images[2].caption}</figcaption>}
-            </motion.figure>
-          </motion.div>
         </div>
 
         {/* Full bleed: Workflow diagram */}

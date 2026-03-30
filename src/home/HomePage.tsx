@@ -54,30 +54,36 @@ function drawTypography(
   ctx.textBaseline = 'top';
 
   if (h > w) {
-    // Mobile portrait — scale from 393×852 Figma reference
+    // Mobile portrait — margins match AppHeader mobile padding (32px each side)
     const scale = w / 393;
-    const size = Math.round(64 * scale);
-    const x = Math.round(40 * scale);
+    const x = Math.round(32 * scale);
     const topY = Math.round(h * (259 / 852));
-    const maxW = Math.round(311 * scale);
-    const lineH = size * 0.957;
+    const availW = w - 2 * x;
+    // Measure "Hi i'm Cail," at a trial size, then scale to fill availW exactly
+    const trialSize = Math.round(52 * scale);
     (ctx as Ctx).letterSpacing = `${(-1.92 * scale).toFixed(2)}px`;
+    ctx.font = `900 ${trialSize}px "Inter", sans-serif`;
+    const size = Math.round(trialSize * availW / ctx.measureText("Hi i'm Cail,").width);
+    const lineH = size * 0.957;
     ctx.font = `900 ${size}px "Inter", sans-serif`;
-    const lines = ["Hi i'm Cail,", 'a Product Designer', 'from Sydney']
-      .flatMap(l => wrapText(ctx, l, maxW));
-    lines.forEach((l, i) => ctx.fillText(l, x, topY + i * lineH));
+    // Render first line directly so it never wraps; wrap the rest at availW
+    ctx.fillText("Hi i'm Cail,", x, topY);
+    const restLines = ['Product Designer', 'and Design System specialist']
+      .flatMap(l => wrapText(ctx, l, availW));
+    restLines.forEach((l, i) => ctx.fillText(l, x, topY + (i + 1) * lineH));
   } else {
     // Desktop landscape — scale from 1920×1080 Figma reference
     const scale = w / 1920;
     const size = Math.round(180 * scale);
     const x = Math.round(120 * scale);
     const topY = Math.round(h * (259 / 1080));
-    const lineH = size * 0.791;
+    const lineH = size * 0.96;
     (ctx as Ctx).letterSpacing = `${(-5.4 * scale).toFixed(2)}px`;
     ctx.font = `900 ${size}px "Inter", sans-serif`;
     ctx.fillText("Hi i'm Cail,", x, topY);
-    ctx.fillText('a Product Designer', x, topY + lineH);
-    ctx.fillText('from Sydney', x, topY + lineH * 2);
+    ctx.fillText('Product Designer', x, topY + lineH);
+    ctx.fillText('and Design System', x, topY + lineH * 2);
+    ctx.fillText('specialist', x, topY + lineH * 3);
   }
 
   (ctx as Ctx).letterSpacing = '0px';
@@ -138,6 +144,9 @@ export default function HomePage() {
         mouse:         { value: new THREE.Vector2(-9999, -9999) },
         mouseRadius:   { value: 14 },
         mouseStrength: { value: 4 },
+        rain:          { value: new THREE.Vector2(-9999, -9999) },
+        rainRadius:    { value: 9 },
+        rainStrength:  { value: 3 },
         velDamping:    { value: 0.018 },
         presDamping:   { value: 0.999 },
       },
@@ -208,6 +217,11 @@ export default function HomePage() {
     canvas.addEventListener('pointercancel', onLeave);
     canvas.addEventListener('pointerleave', onLeave);
 
+    // Raindrop state
+    let rainCountdown = 180 + Math.random() * 240; // frames until next drop (3–7 s at 60 fps)
+    let rainLife = 0;                               // frames remaining for active drop
+    const rainPos = new THREE.Vector2(-9999, -9999);
+
     let pingPong = false;
     let rafId: number;
 
@@ -271,6 +285,20 @@ export default function HomePage() {
       }
 
       trailCtx.globalAlpha = 1;
+
+      // ── Auto raindrop ─────────────────────────────────────────
+      rainCountdown -= 1;
+      if (rainCountdown <= 0 && rainLife === 0) {
+        rainPos.set(Math.random() * SIM_RES, Math.random() * SIM_RES);
+        rainLife = 2;
+        rainCountdown = 180 + Math.random() * 240;
+      }
+      if (rainLife > 0) {
+        simMat.uniforms.rain.value.copy(rainPos);
+        rainLife -= 1;
+      } else {
+        simMat.uniforms.rain.value.set(-9999, -9999);
+      }
 
       // ── WebGL simulation + display ────────────────────────────
       const src = pingPong ? rtA : rtB;

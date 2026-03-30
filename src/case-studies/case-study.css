@@ -1,4 +1,4 @@
-/* ── Cosmic Case Study Page ──────────────────────────────── */
+/* ── Case Study — shared styles ──────────────────────────── */
 
 .cs-page {
   background: var(--color-dark);
@@ -112,8 +112,7 @@
   opacity: 1;
 }
 
-/* First gallery image — peeks above the fold, margins match AppHeader (56px desktop / 32px mobile) */
-/* First gallery image — peeks above the fold, margins match AppHeader (56px desktop / 32px mobile) */
+/* First gallery image — peeks above the fold, margins match AppHeader */
 .cs-gallery__item--peek {
   margin-top: -clamp(220px, 32vh, 380px);
   padding: 0 clamp(32px, 4vw, 56px);
@@ -308,6 +307,42 @@
   text-transform: uppercase;
 }
 
+/* ── Testimonial section (multiple quotes) ───────────────── */
+
+.cs-testimonial {
+  padding-top: clamp(48px, 6vw, 80px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 4vw, 56px);
+}
+
+.cs-testimonial blockquote {
+  margin: 0;
+  padding-left: clamp(20px, 3vw, 40px);
+  border-left: 2px solid var(--color-orange);
+  max-width: 680px;
+}
+
+.cs-testimonial blockquote p {
+  font-size: clamp(17px, 1.4vw, 21px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-sand);
+  opacity: 0.85;
+  margin: 0 0 16px;
+  font-style: italic;
+}
+
+.cs-testimonial blockquote cite {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-sand);
+  opacity: 0.4;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
 /* ── Footer ──────────────────────────────────────────────── */
 
 .cs-footer {
@@ -362,18 +397,9 @@
     padding: 0 24px;
   }
 
-  .cs-gallery__item--peek::before {
-    display: none;
-  }
-
   .cs-gallery__row {
     grid-template-columns: 1fr;
     gap: 12px;
-    padding-bottom: 0;
-  }
-
-  .cs-gallery__row figure:nth-child(2) {
-    transform: none;
   }
 
   .cs-gallery__row figure img {

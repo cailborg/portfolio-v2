@@ -119,7 +119,7 @@ export function VinylBookshelf({ header, onActiveChange, onSpeakerClick, isPlayi
     <div className="vinyl-container">
       {header}
       <header className="vinyl-header">
-        <span className="vinyl-header__title">Selected Works</span>
+        <span className="vinyl-header__title">Selected projects</span>
         <span className="vinyl-header__meta">{projects.length} projects</span>
       </header>
 
